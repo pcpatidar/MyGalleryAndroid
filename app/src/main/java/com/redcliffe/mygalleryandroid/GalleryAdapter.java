@@ -2,24 +2,30 @@ package com.redcliffe.mygalleryandroid;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 import java.util.ArrayList;
 
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHolder> {
 
-    ArrayList<String> personNames;
-    ArrayList<Integer> personImages;
+    ArrayList<Integer> personNames;
+    ArrayList<String> personImages;
     Context context;
 
-    public GalleryAdapter(Context context, ArrayList<String> personNames, ArrayList<Integer> personImages) {
+    public GalleryAdapter(Context context, ArrayList<Integer> personNames, ArrayList<String> personImages) {
         this.context = context;
         this.personNames = personNames;
         this.personImages = personImages;
@@ -37,9 +43,21 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // set the data in items
-        holder.name.setText(personNames.get(position));
-        holder.image.setImageResource(personImages.get(position));
+       // holder.name.setText(personNames.get(position));
+        holder.image.setImageResource(personNames.get(position));
         // implement setOnClickListener event on item view.
+        try{
+           /* Glide.with(context)
+                    .load("https://www.myeaccounts.com//uploads/packaging_category/item_image/1206/thumb_Endive1__1_.jpg")
+                   // .transition(DrawableTransitionOptions.withCrossFade())
+                    .into(holder.image);*/
+
+          // // val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,14 +79,14 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
         TextView name;
-        ImageView image;
+        AppCompatImageView image;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             // get the reference of item view's
             name = (TextView) itemView.findViewById(R.id.name);
-            image = (ImageView) itemView.findViewById(R.id.image);
+            image = (AppCompatImageView) itemView.findViewById(R.id.image);
 
         }
     }
