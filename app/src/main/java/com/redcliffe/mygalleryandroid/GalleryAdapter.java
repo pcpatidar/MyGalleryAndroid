@@ -44,19 +44,13 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         // set the data in items
        // holder.name.setText(personNames.get(position));
-        holder.image.setImageResource(personNames.get(position));
+       // holder.image.setImageResource(personNames.get(position));
         // implement setOnClickListener event on item view.
-        try{
-           /* Glide.with(context)
-                    .load("https://www.myeaccounts.com//uploads/packaging_category/item_image/1206/thumb_Endive1__1_.jpg")
-                   // .transition(DrawableTransitionOptions.withCrossFade())
-                    .into(holder.image);*/
-
-          // // val requestOptions = RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+       /* Glide.with(context)
+                .load("")
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(holder.image);*/
+        Glide.with(context).load(personImages.get(position)).into(holder.image);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,20 +67,20 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return personNames.size();
+        return personImages.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         // init the item view's
         TextView name;
-        AppCompatImageView image;
+        ImageView image;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             // get the reference of item view's
             name = (TextView) itemView.findViewById(R.id.name);
-            image = (AppCompatImageView) itemView.findViewById(R.id.image);
+            image = (ImageView) itemView.findViewById(R.id.image);
 
         }
     }
